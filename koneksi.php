@@ -2,13 +2,12 @@
  $host = "localhost";
  $user = "root";
  $passwd= "";
- $name = "dbtiara_mentari";
+ $name = "web15-bojoku";
 
  $link = mysqli_connect($host, $user, $passwd, $name);
 
  if(!$link){
-     die("koneksi Dengan Database Gagal: ".mysql_connect_errno().
-     " - ".mysql_connect_error());
+     die("koneksi Dengan Database Gagal");
 }
 ?>
 
