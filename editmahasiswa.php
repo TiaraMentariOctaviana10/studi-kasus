@@ -2,19 +2,29 @@
 include 'koneksi.php';
 if (isset($_GET['hal'])){
     $hal = $_GET['hal'];
-
     if($hal == 'edit'){
         $npm = $_GET['npm'];
         $query = "SELECT * FROM t_mahasiswa WHERE npm = '$npm'";
         $result = mysqli_query($link,$query);
         $Data = mysqli_fetch_array($result);
-        $NPM = $Data['npm'];
-        $NAMA = $Data['namaMhs'];
+        $NPM = $Data['NPM'];
+        $NAMA = $Data['namaMHS'];
         $PRODI = $Data['prodi'];
         $ALAMAT = $Data['alamat'];
-        $NOHP = $Data['noHp'];
+        $NOHP = $Data['noHP'];
     }
-}else{
+    else if($hal == 'hapus'){
+        $sql = "DELETE FROM t_mahasiswa WHERE NPM = ".$_GET['npm']."";
+        $query = mysqli_query($link,$sql);
+        if($query){
+            header('location:viewmahasiswa.php');
+        }
+        else{
+            echo "<script>alert('Gagal hapus data')</script>";
+        }
+    }
+}
+else{
     header("location:viewmahasiswa.php");
 }
 ?>
@@ -38,8 +48,7 @@ if (isset($_GET['hal'])){
             <input type="text" name="tnpm" class="form-control" placeholder="masukkan npm anda"required value=<?=$NPM ?>">
 </div>
 <div class="form-group">
-    <label type="text" name="tnama" class="form-control" placeholder="masukkan nama anda" required
-    value="<?= $NAMA ?>">
+    <input type="text" name="tnama" class="form-control" placeholder="masukkan nama anda" required value="<?= $NAMA ?>">
 </div>
 <div class="form-group">
     <label>Prodi</label>
@@ -69,27 +78,23 @@ include 'koneksi.php';
 if(isset($_POST['btnupdate'])){
 
     if($_GET['hal']=="edit"){
-        $edit = mysqli_query($link, "UPDATE t_mahasiswa SET npm='$_POST[tnpm]',
-                                                            namaMhs='$_POST[tnama]',
-                                                            prodi='$_POST[tprodi]',
-                                                            alamat='$_POST[talamat]',
-                                                            noHP='$_POST[tnohp]'
-                                                            WHERE npm = '$_GET[npm]'");
+        $edit = mysqli_query($link, "UPDATE t_mahasiswa SET NPM=".$_POST['tnpm'].",namaMHS='".$_POST['tnama']."',prodi='".$_POST['tprodi']."',alamat='".$_POST['talamat']."',noHP='".$_POST['tnohp']."' WHERE NPM = ".$_GET['npm']."");
 
-    if($edit){
-        echo"<script>
-        alert('UPDAte Data SUKSES');
-        document.location='viewmahasiswa.php';
-        </script>";
-    }else{
-        echo"<script>
-        alert('UPDATE Data GAGAL');
-        document.location='viewmahasiswa.php';
-        </script>";
+        if($edit){
+            echo"<script>
+            alert('UPDAte Data SUKSES');
+            document.location='viewmahasiswa.php';
+            </script>";
+        }else{
+            echo"<script>
+            alert('UPDATE Data GAGAL');
+            document.location='viewmahasiswa.php';
+            </script>";
 
-    }
-    }
+        };
+    };
 }
+
 ?>
 
 <?php
@@ -106,4 +111,5 @@ if($_GET['hal'] == "hapus"){
         alert('HAPUS data GAGAL');
         document.location='viewmahasiswa.php';
         </script>";
-  
+    }
+}

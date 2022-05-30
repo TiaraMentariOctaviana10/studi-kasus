@@ -110,14 +110,14 @@
                 ?>
                 
                 <tr>
-                    <td><?=$data['npm']?></td>
-                    <td><?=$data['namaMhs']?></td>
+                    <td><?=$data['NPM']?></td>
+                    <td><?=$data['namaMHS']?></td>
                     <td><?=$data['prodi']?></td>
                     <td><?=$data['alamat']?></td>
-                    <td><?=$data['noHp']?></td>
+                    <td><?=$data['noHP']?></td>
                     <td>
-                        <a href="editmahasiswa.php?hal=edit&npm=<?php echo $data['npm']?>"class="btn btn-warning">Edit</a>
-                        <a href="editmahasiswa.php?hal=hapus&npm=<?php echo $data['npm']?>"
+                        <a href="editmahasiswa.php?hal=edit&npm=<?php echo $data['NPM']?>"class="btn btn-warning">Edit</a>
+                        <a href="editmahasiswa.php?hal=hapus&npm=<?php echo $data['NPM']?>"
                         onclick="return confirm('Apakah anda ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
@@ -170,13 +170,13 @@
                 ?>
 
                 <tr>
-                    <td><?=$data['kodeMk']?></td>
-                    <td><?=$data['namaMk']?></td>
+                    <td><?=$data['kodeMK']?></td>
+                    <td><?=$data['namaMK']?></td>
                     <td><?=$data['sks']?></td>
                     <td><?=$data['jam']?></td>
                     <td>
-                        <a href="editmatakuliah.php?hal=edit&kodeMk=<?php echo $data['kodeMk']?>"class="btn btn-warning">Edit</a>
-                        <a href="editmatakuliah.php?hal=hapus&kodeMk=<?php echo $data['kodeMk']?>"
+                        <a href="editmatakuliah.php?hal=edit&kodeMk=<?php echo $data['kodeMK']?>"class="btn btn-warning">Edit</a>
+                        <a href="editmatakuliah.php?hal=hapus&kodeMk=<?php echo $data['kodeMK']?>"
                         onclick="return confirm('Apakah anda ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>

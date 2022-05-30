@@ -12,6 +12,16 @@ if(isset($_GET['hal'])) {
         $nama = $data['namaDosen'];
         $noHP = $data['noHP'];
     }
+    else if($hal == 'hapus'){
+        $sql = "DELETE FROM t_dosen WHERE idDosen = ".$_GET['idDosen']."";
+        $query = mysqli_query($link,$sql);
+        if($query){
+            header('location:viewmahasiswa.php');
+        }
+        else{
+            echo "<script>alert('Gagal hapus data')</script>";
+        }
+    }
 }else {
     header("location:viewmahasiswa.php");
     }
@@ -48,7 +58,7 @@ if(isset($_GET['hal'])) {
                         <input type="text" name="tnohp" class="form-control" placeholder="contoh = 081222333444" required
                         value="<?=$noHP ?>">
                     </div>
-                    <button type="submit" calss="btn btn-succcess" name="btnipdate">Update</button>
+                    <button type="submit" calss="btn btn-succcess" name="btnupdate">Update</button>
                 </form>
             </div>
         </div>
@@ -63,9 +73,9 @@ if(isset($_GET['hal'])) {
 include 'koneksi.php';
 if(isset($_POST['btnupdate'])) {
     if($_GET['hal']=="edit") {
-        $edit = mysqli_query($link, "UPDATE t_dosen SET idDosen='$_POST[tiddosen]',
+        $edit = mysqli_query($link, "UPDATE t_dosen SET idDosen='$_POST[tidDosen]',
         namaDosen='$_POST[tnamadosen]',
-        noHP='$_POST[tnohpdosen]'
+        noHP='$_POST[tnohp]'
         WHERE idDosen = '$_GET[idDosen]'");
         if($edit) {
             echo "<script>
